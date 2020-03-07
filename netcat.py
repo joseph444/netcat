@@ -5,6 +5,7 @@ import ftpdest as FTPDEST
 import portscanner as PS
 import sys,getopt,os
 import socket as s
+import pty
 
 Server=False
 Client=True
@@ -20,6 +21,7 @@ def help():
          "-O                path of the file to be recieved\n" \
          "-z                portscanner\n" \
          "-h     --help     help" \
+         "-n                arp scan"\
          "\n" \
          "\n" \
          "usage:\n" \
@@ -80,6 +82,9 @@ def main():
         elif o in ("-h","--help"):
             help()
             return
+        elif o in ("-n"):
+            pty.pty("sudo ./netdiscover.py")
+            pass
         pass
     if Server==True and ( Ftpd==True or Ftps == True or Ps== True):
         help()
